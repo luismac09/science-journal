@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito.woff2') format('woff2'),
+    url('/fonts/Nunito.woff') format('woff'),
+    url('/fonts/Nunito.ttf') format('ttf');
+  font-display: swap;
+}
+body {
+  background-color: #333;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
