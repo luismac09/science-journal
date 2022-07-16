@@ -1,4 +1,11 @@
 <template>
-  <router-view />
+  <div class="wrapper">
+    <router-view />
+  </div>
 </template>
-<style scoped></style>
+<style scoped>
+.wrapper {
+  height: 100vh;
+  overflow: hidden;
+}
+</style>
