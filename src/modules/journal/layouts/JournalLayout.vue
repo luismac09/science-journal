@@ -8,20 +8,13 @@ const PostList = defineAsyncComponent(() =>
 
 <template>
   <nav-bar />
-  <div class="wrapper flex">
-    <div class="column basis-4/12">
+  <div class="flex">
+    <div class="basis-4/12">
       <post-list />
     </div>
-    <div class="column basis-8/12">
+    <div class="basis-8/12">
       <router-view />
     </div>
   </div>
 </template>
-<style scoped>
-.wrapper {
-  height: 100%;
-}
-.column {
-  text-align: center;
-}
-</style>
+<style scoped></style>
