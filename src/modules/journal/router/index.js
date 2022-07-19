@@ -1,5 +1,11 @@
 export default {
   name: 'journal',
   component: () => import('@/modules/journal/layouts/JournalLayout.vue'),
-  children: {}
+  children: [
+    {
+      path: '',
+      name: 'no-post',
+      component: () => import('@/modules/journal/views/NoPost.vue')
+    }
+  ]
 }
