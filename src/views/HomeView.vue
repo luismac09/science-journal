@@ -7,7 +7,7 @@ const goToJournal = () => router.push({ name: 'journal' })
 
 <template>
   <div class="wrapper mx-auto mt-3 mb-3 text-center">
-    <p class="text-3xl font-bold mb-4">Science Journal</p>
+    <h1 class="text-3xl font-bold mb-4">Science Journal</h1>
     <img
       class="mx-auto mb-3"
       alt="Science logo"
