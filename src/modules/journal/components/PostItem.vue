@@ -1,6 +1,9 @@
 <script setup></script>
 <template>
-  <div class="post text-sm font-medium cursor-pointer">
+  <div
+    class="post text-sm font-medium cursor-pointer"
+    @click="$router.push({ name: 'edit-post', params: { id: 10 } })"
+  >
     <div class="post-header">
       <h3 class="post-title">Post</h3>
       <div class="post-date">

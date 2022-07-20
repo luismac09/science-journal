@@ -6,6 +6,11 @@ export default {
       path: '',
       name: 'no-post',
       component: () => import('@/modules/journal/views/NoPost.vue')
+    },
+    {
+      path: ':id',
+      name: 'edit-post',
+      component: () => import('@/modules/journal/views/EditPost.vue')
     }
   ]
 }
