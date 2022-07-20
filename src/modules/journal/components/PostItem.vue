@@ -4,9 +4,9 @@
     <div class="post-header">
       <h3 class="post-title">Post</h3>
       <div class="post-date">
-        <span class="mr-1.5">15</span>
-        <span class="mr-1.5">Julio</span>
-        <span>2021</span>
+        <span class="mr-1.5">lorem</span>
+        <span class="mr-1.5">ipsum</span>
+        <span>2022</span>
       </div>
     </div>
     <div class="post-description">
