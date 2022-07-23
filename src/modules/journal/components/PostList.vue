@@ -1,20 +1,24 @@
 <script setup>
-import { defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent, ref } from 'vue'
+import { journal } from '../store/'
 const PostItem = defineAsyncComponent(() =>
   import('../components/PostItem.vue')
 )
+const term = ref('')
+const postByTerm = computed(() => journal.getPostByTerm(term.value))
 </script>
 <template>
   <div class="list">
     <div class="px-2 pt-2">
       <input
+        v-model="term"
         type="search"
         class="search text-dark outline-dark"
         placeholder="search post"
       />
     </div>
     <div class="item">
-      <post-item v-for="item in 100" :key="item" />
+      <post-item v-for="post in postByTerm" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
