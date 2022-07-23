@@ -1,23 +1,38 @@
-<script setup></script>
+<script setup>
+import { computed, toRefs } from 'vue'
+const props = defineProps({
+  post: {
+    type: Object,
+    required: true
+  }
+})
+const { id, title, date, text } = toRefs(props.post)
+const shortedText = computed(() =>
+  text.value.length > 130 ? text.value.substring(0, 130) + '...' : text.value
+)
+const postDate = computed(() => {
+  const newDate = new Date(date.value)
+  return newDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit'
+  })
+})
+</script>
 <template>
   <div
     class="post text-sm font-medium cursor-pointer"
-    @click="$router.push({ name: 'edit-post', params: { id: 10 } })"
+    @click="$router.push({ name: 'edit-post', params: { id } })"
   >
     <div class="post-header">
-      <h3 class="post-title">Post</h3>
+      <h3 class="post-title">{{ title }}</h3>
       <div class="post-date">
-        <span class="mr-1.5">lorem</span>
-        <span class="mr-1.5">ipsum</span>
-        <span>2022</span>
+        <span class="mr-1.5">{{ postDate }}</span>
       </div>
     </div>
     <div class="post-description">
       <p class="text-left">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis
-        explicabo vitae sit quidem? Magnam, voluptatum nisi maxime soluta error
-        unde provident odio obcaecati sit optio quas nostrum nobis, consequatur
-        repellendus!
+        {{ shortedText }}
       </p>
     </div>
   </div>
