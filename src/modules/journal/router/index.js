@@ -1,9 +1,10 @@
 export default {
   name: 'journal',
+  redirect: '/no-post',
   component: () => import('@/modules/journal/layouts/JournalLayout.vue'),
   children: [
     {
-      path: '',
+      path: '/no-post',
       name: 'no-post',
       component: () => import('@/modules/journal/views/NoPost.vue')
     },
