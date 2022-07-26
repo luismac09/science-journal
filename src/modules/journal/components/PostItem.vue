@@ -1,5 +1,6 @@
 <script setup>
 import { computed, toRefs } from 'vue'
+import { getDate } from '../helpers'
 const props = defineProps({
   post: {
     type: Object,
@@ -10,14 +11,7 @@ const { id, title, date, text } = toRefs(props.post)
 const shortedText = computed(() =>
   text.value.length > 130 ? text.value.substring(0, 130) + '...' : text.value
 )
-const postDate = computed(() => {
-  const newDate = new Date(date.value)
-  return newDate.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: '2-digit'
-  })
-})
+const postDate = computed(() => getDate(date.value))
 </script>
 <template>
   <div
