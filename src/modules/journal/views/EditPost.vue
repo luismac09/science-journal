@@ -3,18 +3,37 @@ import newspaper from '@/assets/old-newspaper.jpg'
 import saveIcon from '@/assets/save.svg'
 import trashIcon from '@/assets/trash.svg'
 import uploadIcon from '@/assets/upload.svg'
-import { defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent, watch } from 'vue'
+import { useRouter } from 'vue-router'
+import { getDate } from '../helpers'
+import { journal } from '../store'
 const FloatingButton = defineAsyncComponent(() =>
   import('../components/FloatingButton.vue')
 )
+const router = useRouter()
+const props = defineProps({
+  id: {
+    type: String,
+    required: true
+  }
+})
+const loadPost = () => {
+  const post = journal.getPostById(props.id)
+  if (!post) return router.push({ name: 'no-post' })
+  return post
+}
+
+watch(
+  () => props.id,
+  () => loadPost()
+)
+const post = computed(() => loadPost())
 </script>
 <template>
   <div class="post mt-2 p-2 mx-auto">
     <div class="post-header flex items-center justify-between">
-      <p>
-        <span class="text-info text-xl font-bold">lorem</span>
-        <span class="mx-3 text-lg">ipsum</span>
-        <span class="mx-1 text-lg">2022</span>
+      <p class="text-xl font-bold text-info">
+        {{ getDate(post.date) }}
       </p>
       <div class="flex">
         <button
@@ -46,7 +65,11 @@ const FloatingButton = defineAsyncComponent(() =>
       </div>
     </div>
     <div class="post-body flex mx-auto">
-      <textarea class="post-textarea" placeholder="what is today's news?" />
+      <textarea
+        v-model="post.text"
+        class="post-textarea"
+        placeholder="what is today's news?"
+      />
     </div>
   </div>
   <img
@@ -75,13 +98,12 @@ textarea:focus {
     margin-bottom: 1em;
   }
   &-body {
-    width: 90%;
     height: 10rem;
     margin-bottom: 1em;
   }
   &-textarea {
     width: 100%;
-    padding: 1em;
+    padding: 0.5em;
     caret-color: white;
     color: rgb(231, 227, 227);
     background-color: rgb(80, 78, 78);

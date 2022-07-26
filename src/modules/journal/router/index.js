@@ -11,7 +11,12 @@ export default {
     {
       path: ':id',
       name: 'edit-post',
-      component: () => import('@/modules/journal/views/EditPost.vue')
+      component: () => import('@/modules/journal/views/EditPost.vue'),
+      props: route => {
+        return {
+          id: route.params.id
+        }
+      }
     }
   ]
 }

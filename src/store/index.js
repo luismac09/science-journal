@@ -5,7 +5,7 @@ export const useJournalStore = defineStore('journal', {
     return {
       posts: [
         {
-          id: new Date().getTime(),
+          id: new Date().getTime().toString(36),
           date: Date.now(),
           text: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis
         explicabo vitae sit quidem? Magnam, voluptatum nisi maxime soluta error
@@ -15,7 +15,7 @@ export const useJournalStore = defineStore('journal', {
           picture: null
         },
         {
-          id: new Date().getTime() + 1000,
+          id: (new Date().getTime() + 1000).toString(36),
           date: Date.now(),
           text: `In nostrud nostrud officia pariatur enim. Mollit dolore labore ullamco
           excepteur occaecat. Fugiat qui fugiat laborum nostrud. Et dolor elit non excepteur
@@ -25,7 +25,7 @@ export const useJournalStore = defineStore('journal', {
           picture: null
         },
         {
-          id: new Date().getTime() + 2000,
+          id: (new Date().getTime() + 2000).toString(36),
           date: Date.now(),
           text: `Eiusmod est irure magna ipsum anim laboris occaecat cillum nostrud eiusmod enim
           culpa cillum. Veniam minim duis proident eu quis incididunt id laborum minim occaecat 
@@ -45,6 +45,13 @@ export const useJournalStore = defineStore('journal', {
         return state.posts.filter(post =>
           post.title.toLowerCase().includes(term.toLowerCase())
         )
+      },
+    getPostById:
+      state =>
+      (id = '') => {
+        const post = state.posts.find(post => post.id === id)
+        if (!post) return
+        return { ...post }
       }
   }
 })
